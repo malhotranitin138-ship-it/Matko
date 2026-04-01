@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Website locked🔒😙</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+font-family: Arial;
+color:white;
+}
+
+.container{
+width:90%;
+max-width:400px;
+background: rgba(250, 0, 180, 0.25);
+padding:25px;
+border-radius:20px;
+text-align:center;
+backdrop-filter: blur(10px);
+}
+
+input{
+padding:10px;
+border:none;
+border-radius:10px;
+width:80%;
+}
+
+button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+}
+
+.hint{font-size:14px;opacity:0.7;margin-top:10px;}
+.error{margin-top:10px;font-size:14px;}
+
+.hearts-container{position:fixed;width:100%;height:100%;top:0;left:0;overflow:hidden;}
+.heart{position:absolute;bottom:-10px;color:rgba(255,255,255,0.6);animation:floatUp linear infinite;}
+@keyframes floatUp{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(-100vh);opacity:0;}}
+</style>
+</head>
+
+<body>
+
+<div class="hearts-container"></div>
+
+<div class="container">
+<h2>Enter Password 💕</h2>
+<input type="password" id="password">
+<p class="hint">Hint: our Pengu 🐧</p>
+<button onclick="check()">Unlock 🔓❤️</button>
+<div class="error" id="error"></div>
+</div>
+
+<script>
+function check(){
+let pass=document.getElementById("password").value;
+if(pass==="Nishia"){
+localStorage.setItem("playMusic","true");
+window.location.href="home.html";
+}else{
+document.getElementById("error").innerText="Wrong password 😢";
+}
+}
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

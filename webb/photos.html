@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Memories 💕</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.slideshow{position:relative;height:250px;margin:10px 0;}
+.slide{position:absolute;width:100%;height:100%;opacity:0;transition:1s;}
+.active{opacity:1;}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:contain;
+background:black;
+border-radius:15px;
+}
+
+.caption{
+position:absolute;
+bottom:10px;
+width:100%;
+text-align:center;
+background:rgba(0,0,0,0.5);
+padding:8px;
+opacity:0;
+transition:1s;
+}
+
+.show{opacity:1;}
+</style>
+</head>
+
+<body>
+
+<div class="hearts-container"></div>
+
+<div class="container">
+<h1>Our Memories 🎀</h1>
+
+<div class="slideshow">
+<div class="slide active"><img src="photos/pic1.jpg"><div class="caption">Our first picture ❤️</div></div>
+<div class="slide"><img src="photos/pic2.jpg"><div class="caption">One of my fav days 💖</div></div>
+<div class="slide"><img src="photos/pic3.jpg"><div class="caption">Your Smile 😊</div></div>
+<div class="slide"><img src="photos/pic4.jpg"><div class="caption">This Moment 🌸</div></div>
+<div class="slide"><img src="photos/pic5.jpg"><div class="caption">I Love this 💕</div></div>
+<div class="slide"><img src="photos/pic6.jpg"><div class="caption">So many memories ❤️</div></div>
+<div class="slide"><img src="photos/pic7.jpg"><div class="caption">My favourote person 💖</div></div>
+<div class="slide"><img src="photos/pic8.jpg"><div class="caption">Us forever 🫶</div></div>
+</div>
+
+<button onclick="goNext()">Next 💖</button>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="music/memories.mp3">
+</audio>
+
+<script>
+function goNext(){window.location.href="reasons.html";}
+
+let music=document.getElementById("bgMusic");
+if(localStorage.getItem("playMusic")==="true"){
+music.volume=0;
+music.play().then(()=>{
+let v=0;
+let fade=setInterval(()=>{
+if(v<0.4){v+=0.02; music.volume=v;}
+else clearInterval(fade);
+},200);
+}).catch(()=>{});
+}
+
+let slides=document.querySelectorAll(".slide");
+let i=0;
+
+function showSlide(){
+
+slides.forEach(s=>{
+s.classList.remove("active");
+s.querySelector(".caption").classList.remove("show");
+});
+
+slides[i].classList.add("active");
+
+// show caption instantly
+slides[i].querySelector(".caption").classList.add("show");
+
+// hide after 2 sec
+setTimeout(()=>{
+slides[i].querySelector(".caption").classList.remove("show");
+},2000);
+
+// next after 5 sec
+if(i<slides.length-1){
+i++;
+setTimeout(showSlide,5000);
+}
+}
+
+showSlide();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

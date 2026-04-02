@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lock</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hearts-container"></div>
+<div class="container">
+<h2>Enter Password</h2>
+<input id="pass" type="password">
+<p>Hint: our Pengu 🐧</p>
+<button onclick="check()">Unlock</button>
+</div>
+<script src="script.js"></script>
+<script>
+function check(){
+ if(document.getElementById('pass').value === "Nishia"){
+   localStorage.setItem("music","on");
+   window.location.href="home.html";
+ }
+}
+</script>
+</body>
+</html>

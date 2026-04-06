@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why I Love You 💕</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="hearts-container"></div>
+
+  <div class="container">
+    <h1>Why I Love You 💕</h1>
+    <div class="divider"></div>
+
+    <div class="love-letter">
+Meri Deviiiii 🥹🫶🏻
+Meri Matko 🥹💗
+Meri Jaan de Tukde 🥹💕
+My Chhotu Babyyyyy 😚💞
+My Love 🥹❤️
+
+You know what 🥺 I Loveeee Youuuuu soooooo much 🥹❤️ te not just for what you are but for how you make me feel 🥺 Tere around I can be a child which is one of the things I love the most 🥺 Thankyou for letting me be 🥺🫶🏻
+
+You are my peace now 🥺 my safe place 🎀 jithe mai hmesha aa skda no matter what 🥹 te I know you will never ever make me feel bad intentionally and never judge me 😌 You make my days better by just being there for me 😙 Tera meri jindgi ch hona hi Boht vddi gal hai mere lyi and I toh have got poori ki poori YOUUUUU 🥹❤️
+
+Thankyouuuuuuuu soooooooooo much 🥹💗
+
+Now let me tell you kuch kuch cheejan jo i Love about you 😌 nd just so you know I am mentioning a few but I Love You poora ka poora okay 🥹
+
+I Love your smile 🥹 the first thing I fell for 😚
+And then come your eyes 🥹 sooooo sundarrrrrr 💕💕
+You are sooo sundarrrrrr 🤭
+You are soooooo Prettttyyyyyyyy 😚
+I love your rasgulle vi 🤭
+You make me feel special 🥹
+Tere nal gal Krna gives my inner child peace 🥹
+You understand me like no one ever has 🥺
+You literally are the best part of my life 🥹🎀
+
+I LOVEEEE YOUUUUU MERI DEVIIIII 🥹❤️❤️
+
+You mean the whole world to me 🥹🎀 Mere lyi you actually are a 2 year old baby hi 🥺 te schi uda hi behave kreya kr mere nal 🥺 I don't like it when my baby cries that breaks me 🥺
+
+I am here to take care of you forever 🥹 tenu koi jrurt nhi hai faltu dimag chlan di preshan hon di 🥺 just come to me whenever something feels heavy and we will take care of that together 🥹🎀
+
+Don't ever feel like tu mnu tang kr rhi a ya kuch hor just call me text me and I will be there hmesha 🥹💞
+
+You just need to take care of yourself hmesha te mai ta haiga hi a additionally tera dhyan rkhn lyi 😌
+
+So just stay happy happy hmesha 🥹
+
+I LOVEEEE YOUUUUU soooooo much 🥹❤️❤️ (till the end of the omniverse and back 🤭)
+
+And I really wish to be yours forever ♾️ and wish that you be mine forever 🥹
+    </div>
+
+    <p class="sign">~ Your NODDYYYYY 🎀</p>
+
+    <div style="margin-top: 22px;">
+      <button class="btn-primary" id="nextBtn">Next 💖</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music/main.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+  <script>
+    startMusic(0.35);
+
+    /* ── Navigation ────────────────────────────────────────
+       If user chose "reasons first"  → next goes to photos.html
+       If user chose "memories first" → next goes to thankyou.html
+    ─────────────────────────────────────────────────────── */
+    document.addEventListener("DOMContentLoaded", function () {
+      var btn = document.getElementById("nextBtn");
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var path = localStorage.getItem("chosenPath");
+          if (path === "reasons") {
+            window.location.href = "photos.html";
+          } else {
+            window.location.href = "thankyou.html";
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

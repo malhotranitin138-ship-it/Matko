@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories 💕</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="hearts-container"></div>
+
+  <div class="container">
+    <h1>Our Memories 🎀</h1>
+    <p class="subtext" style="margin-bottom: 14px;">Every picture tells our story 💕</p>
+
+    <!-- Whole slideshow area -->
+    <div id="slideshowWrap">
+
+      <!-- START SCREEN — shown before slideshow begins -->
+      <div id="startScreen" class="start-screen">
+        <p>Ready to see our memories? 🥹</p>
+        <button class="btn-primary" id="startBtn">▶ Start Slideshow</button>
+      </div>
+
+      <!-- RUNNING SLIDESHOW — hidden until started -->
+      <div class="slideshow" id="slideshow">
+        <div class="slide active">
+          <img src="photos/pic1.jpg" alt="Memory 1">
+          <div class="caption-overlay">Our first picture ❤️</div>
+        </div>
+        <div class="slide">
+          <img src="photos/pic2.jpg" alt="Memory 2">
+          <div class="caption-overlay">One of my fav days 💖</div>
+        </div>
+        <div class="slide">
+          <img src="photos/pic3.jpg" alt="Memory 3">
+          <div class="caption-overlay">Your Smile 😊</div>
+        </div>
+        <div class="slide">
+          <img src="photos/pic4.jpg" alt="Memory 4">
+          <div class="caption-overlay">This Moment 🌸</div>
+        </div>
+        <div class="slide">
+          <img src="photos/pic5.jpg" alt="Memory 5">
+          <div class="caption-overlay">I Love this 💕</div>
+        </div>
+        <div class="slide">
+          <img src="photos/pic6.jpg" alt="Memory 6">
+          <div class="caption-overlay">So many memories ❤️</div>
+        </div>
+        <div class="slide">
+          <img src="photos/pic7.jpg" alt="Memory 7">
+          <div class="caption-overlay">My favourite person 💖</div>
+        </div>
+        <div class="slide">
+          <img src="photos/pic8.jpg" alt="Memory 8">
+          <div class="caption-overlay">Us forever 🫶</div>
+        </div>
+      </div>
+
+      <!-- Caption BELOW last image (shown when slideshow ends) -->
+      <p class="caption-below" id="captionBelow"></p>
+
+    </div><!-- /slideshowWrap -->
+
+    <!-- Dot indicators (built by JS) -->
+    <div class="slide-dots" id="dots"></div>
+
+    <!-- Next — destination depends on which path was chosen -->
+    <button class="btn-primary" id="nextBtn" onclick="goNext()">Next 💖</button>
+
+  </div><!-- /container -->
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music/memories.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+  <script>
+    startMusic(0.35);
+
+    /* ── Navigation ────────────────────────────────────────
+       If user chose "memories first" → next goes to reasons.html
+       If user chose "reasons first"  → next goes to thankyou.html
+    ─────────────────────────────────────────────────────── */
+    function goNext() {
+      var path = localStorage.getItem("chosenPath");
+      if (path === "memories") {
+        window.location.href = "reasons.html";
+      } else {
+        window.location.href = "thankyou.html";
+      }
+    }
+
+    /* ── Slideshow ──────────────────────────────────────────
+       Timing:
+         Each slide = 5 000 ms total
+           - First 2 000 ms  → caption overlay visible (on image)
+           - Next  3 000 ms  → only image
+           - Then advance to next slide
+       Last slide:
+           - Stays visible
+           - Caption text moves BELOW the slideshow box
+           - No auto-advance
+    ─────────────────────────────────────────────────────── */
+    document.addEventListener("DOMContentLoaded", function () {
+
+      var startScreen  = document.getElementById("startScreen");
+      var slideshow    = document.getElementById("slideshow");
+      var startBtn     = document.getElementById("startBtn");
+      var captionBelow = document.getElementById("captionBelow");
+      var dotsWrap     = document.getElementById("dots");
+
+      var slides = slideshow ? slideshow.querySelectorAll(".slide") : [];
+      var total  = slides.length;
+      var current = 0;
+
+      /* Build dot indicators */
+      if (dotsWrap && total > 0) {
+        for (var i = 0; i < total; i++) {
+          var d = document.createElement("div");
+          d.className = "dot" + (i === 0 ? " active" : "");
+          dotsWrap.appendChild(d);
+        }
+      }
+
+      function getDots() {
+        return dotsWrap ? dotsWrap.querySelectorAll(".dot") : [];
+      }
+
+      function updateDot(idx) {
+        var dotList = getDots();
+        for (var j = 0; j < dotList.length; j++) {
+          dotList[j].classList.toggle("active", j === idx);
+        }
+      }
+
+      /* Show slide at index idx, coming FROM fromIdx */
+      function showSlide(fromIdx, toIdx) {
+        /* Fade out previous */
+        if (slides[fromIdx]) {
+          slides[fromIdx].classList.remove("active");
+          var prevCap = slides[fromIdx].querySelector(".caption-overlay");
+          if (prevCap) prevCap.classList.remove("show");
+        }
+
+        current = toIdx;
+        var slide = slides[current];
+        if (!slide) return;
+
+        slide.classList.add("active");
+        updateDot(current);
+
+        var cap = slide.querySelector(".caption-overlay");
+        var isLast = (current === total - 1);
+
+        /* Show caption overlay for first 2 s */
+        if (cap) {
+          cap.classList.add("show");
+          setTimeout(function () { cap.classList.remove("show"); }, 2000);
+        }
+
+        if (!isLast) {
+          /* Advance after 5 s */
+          setTimeout(function () {
+            showSlide(current, current + 1);
+          }, 5000);
+        } else {
+          /* Last slide: show caption BELOW after 2 s (when overlay hides) */
+          setTimeout(function () {
+            if (captionBelow && cap) {
+              captionBelow.textContent = cap.textContent;
+              captionBelow.style.display = "block";
+            }
+          }, 2100);
+        }
+      }
+
+      /* Start button click */
+      if (startBtn) {
+        startBtn.addEventListener("click", function () {
+          /* Hide start screen, reveal slideshow */
+          if (startScreen) startScreen.style.display = "none";
+          if (slideshow)   slideshow.classList.add("running");
+
+          /* Show first slide */
+          var firstCap = slides[0] ? slides[0].querySelector(".caption-overlay") : null;
+          if (slides[0]) {
+            slides[0].classList.add("active");
+            updateDot(0);
+          }
+          if (firstCap) {
+            firstCap.classList.add("show");
+            setTimeout(function () { firstCap.classList.remove("show"); }, 2000);
+          }
+
+          /* Schedule advance after 5 s if more than 1 slide */
+          if (total > 1) {
+            setTimeout(function () { showSlide(0, 1); }, 5000);
+          } else {
+            /* Single slide edge case */
+            if (firstCap && captionBelow) {
+              setTimeout(function () {
+                captionBelow.textContent = firstCap.textContent;
+                captionBelow.style.display = "block";
+              }, 2100);
+            }
+          }
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>

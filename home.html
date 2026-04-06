@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="hearts-container"></div>
+
+  <div class="container">
+    <h1>Hiiiii, mere Chhotu Baby 💖</h1>
+    <p id="text" style="min-height: 58px; margin-bottom: 4px;"></p>
+
+    <div class="divider"></div>
+
+    <h2>Do you love me? 💕</h2>
+    <p class="subtext">No is not an option though, but you can try 😇</p>
+
+    <div style="margin-top: 24px; position: relative; min-height: 56px;">
+      <button class="btn-primary" onclick="sayYes()">Yes ❤️</button>
+      <button id="noBtn">No 😢</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music/main.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+  <script>
+    /* Start music immediately — before DOMContentLoaded fires */
+    startMusic(0.35);
+  </script>
+</body>
+</html>

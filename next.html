@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yayyyy ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="hearts-container"></div>
+
+  <div class="container">
+    <span class="bounce">🎉</span>
+    <h1>I knew it! 🥹</h1>
+    <p>Of course you do… how could you not? 😏💕<br>
+       I love you too, more than you'll ever fully know 🥹❤️</p>
+
+    <div class="divider"></div>
+
+    <p style="font-weight:500; color:#5a1a30; margin-bottom: 4px;">Pehle ki dekhna chahoge? 🥰</p>
+
+    <div style="margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;">
+      <button class="btn-primary" onclick="choosePath('memories')">Our Memories 📸</button>
+      <button class="btn-primary" onclick="choosePath('reasons')">Why I Love You 💕</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music/main.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+  <script>
+    startMusic(0.35);
+
+    /* Store which path the user chose so the "Next" buttons
+       on photos.html and reasons.html know where to send them. */
+    function choosePath(choice) {
+      localStorage.setItem("chosenPath", choice);
+      if (choice === "memories") {
+        window.location.href = "photos.html";
+      } else {
+        window.location.href = "reasons.html";
+      }
+    }
+  </script>
+</body>
+</html>

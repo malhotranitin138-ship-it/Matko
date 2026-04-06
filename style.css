@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --pink-bg:      #ffe0ec;        /* warm blush page background */
+  --pink-card:    #f0a0bb;        /* darker pink card */
+  --pink-card2:   #e8809e;        /* slightly deeper for borders/accents */
+  --pink-deep:    #c9547a;        /* buttons, highlights */
+  --pink-btn:     #d4527a;
+  --pink-light:   #fff0f5;
+  --text-main:    #5a1a30;        /* deep rose for readable text */
+  --text-soft:    #8b3a54;
+  --white:        #ffffff;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Body — warm pink, centered ── */
+body {
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 16px;
+  /* Warm layered pink background */
+  background-color: var(--pink-bg);
+  background-image:
+    radial-gradient(ellipse 70% 50% at 10% 10%,  rgba(255,182,210,0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 90% 90%,  rgba(255,160,195,0.45) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 100%, rgba(255,200,220,0.35) 0%, transparent 50%);
+  overflow-x: hidden;
+  position: relative;
+  color: var(--text-main);
+}
+
+/* ── Main card ── */
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 500px;
+  background: var(--pink-card);
+  border: 2px solid var(--pink-card2);
+  border-radius: 32px;
+  padding: 44px 40px;
+  text-align: center;
+  box-shadow:
+    0 8px 32px rgba(180, 60, 100, 0.18),
+    0 2px 8px  rgba(180, 60, 100, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+  animation: fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typography ── */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 10px rgba(140,30,70,0.25);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+p {
+  font-size: 0.96rem;
+  line-height: 1.85;
+  color: var(--text-main);
+  white-space: pre-line;
+}
+
+.subtext {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* ── Divider ── */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+  margin: 18px auto;
+  border-radius: 2px;
+}
+
+/* ── Buttons ── */
+button {
+  display: inline-block;
+  margin: 10px 6px 0;
+  padding: 13px 30px;
+  border: none;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.94rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary {
+  background: var(--pink-btn);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(180,50,90,0.35), 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #bf4570;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(180,50,90,0.45);
+  outline: none;
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* "No" button — soft ghost */
+#noBtn {
+  background: rgba(255,255,255,0.30);
+  color: var(--text-soft);
+  border: 1.5px solid rgba(255,255,255,0.55);
+  box-shadow: none;
+}
+
+/* ── Password input (index.html) ── */
+.input-wrap {
+  margin: 18px 0 8px;
+}
+
+.input-wrap input {
+  padding: 12px 20px;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 50px;
+  width: 84%;
+  background: rgba(255,255,255,0.35);
+  color: var(--text-main);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  text-align: center;
+  letter-spacing: 0.08em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+
+.input-wrap input::placeholder {
+  color: rgba(140,60,90,0.45);
+}
+
+.input-wrap input:focus {
+  border-color: rgba(180,50,100,0.55);
+  box-shadow: 0 0 0 3px rgba(210,80,120,0.15);
+  background: rgba(255,255,255,0.50);
+}
+
+.hint {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  margin-top: 6px;
+}
+
+.error-msg {
+  font-size: 0.86rem;
+  color: #8b1a3a;
+  margin-top: 10px;
+  min-height: 20px;
+  font-weight: 500;
+}
+
+/* ── Lock ring ── */
+.lock-ring {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  border: 2px solid rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  box-shadow: 0 4px 18px rgba(180,60,100,0.18);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 18px rgba(180,60,100,0.18); }
+  50%       { transform: scale(1.08); box-shadow: 0 6px 26px rgba(180,60,100,0.30); }
+}
+
+/* ── Bounce emoji ── */
+.bounce {
+  display: block;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  animation: bounceAnim 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes bounceAnim {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-10px); }
+}
+
+/* ─────────────────────────────────────────────
+   SLIDESHOW (photos.html)
+───────────────────────────────────────────── */
+
+/* Wrapper that holds start button OR running show */
+#slideshowWrap {
+  margin: 10px 0 4px;
+}
+
+/* Start screen — shown before slideshow begins */
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+  background: rgba(255,255,255,0.20);
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.start-screen p {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 16px;
+}
+
+/* The running slideshow box */
+.slideshow {
+  position: relative;
+  width: 100%;
+  /* Tall enough for portrait photos on mobile, shorter on desktop */
+  height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.12);
+  display: none; /* hidden until started */
+}
+
+.slideshow.running { display: block; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.slide.active { opacity: 1; }
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* never crop — portrait-safe */
+  display: block;
+}
+
+/* Caption OVERLAID on image (first 2 s) */
+.caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 14px 14px;
+  background: linear-gradient(transparent, rgba(80,0,30,0.65));
+  font-size: 0.87rem;
+  color: rgba(255,235,240,0.96);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.caption-overlay.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Caption BELOW image (last slide only) */
+.caption-below {
+  display: none;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-style: italic;
+  margin-top: 10px;
+  padding: 8px 0 2px;
+  text-align: center;
+  animation: fadeUp 0.6s ease both;
+}
+
+/* Dot indicators */
+.slide-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: 10px 0 14px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(180,60,100,0.25);
+  transition: background 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+
+.dot.active {
+  background: var(--pink-deep);
+  transform: scale(1.4);
+}
+
+/* ─────────────────────────────────────────────
+   LOVE LETTER (reasons.html)
+───────────────────────────────────────────── */
+.love-letter {
+  text-align: left;
+  font-size: 0.93rem;
+  line-height: 2;
+  color: var(--text-main);
+  max-height: 50vh;
+  overflow-y: auto;
+  padding: 6px 12px 6px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180,60,100,0.3) transparent;
+}
+
+.love-letter::-webkit-scrollbar       { width: 4px; }
+.love-letter::-webkit-scrollbar-thumb { background: rgba(180,60,100,0.3); border-radius: 4px; }
+
+/* ── Thank-you page ── */
+.thankyou-emoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 14px;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.18); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.10); }
+  70%       { transform: scale(1); }
+}
+
+.sign {
+  margin-top: 20px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-main);
+  opacity: 0.80;
+}
+
+/* ─────────────────────────────────────────────
+   FLOATING HEARTS (all pages)
+───────────────────────────────────────────── */
+.hearts-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  bottom: -24px;
+  animation: floatUp linear forwards;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(-8deg) scale(1);    opacity: 0.9; }
+  50%  { opacity: 0.65; }
+  100% { transform: translateY(-110vh) rotate(12deg) scale(0.85); opacity: 0; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  body { padding: 20px 12px; }
+  .container { padding: 34px 20px; border-radius: 26px; }
+  .slideshow { height: 260px; }
+  .love-letter { max-height: 46vh; }
+  button { padding: 12px 22px; font-size: 0.91rem; }
+  .input-wrap input { width: 90%; }
+}
+
+@media (max-width: 360px) {
+  h1 { font-size: 1.4rem; }
+  .container { padding: 28px 16px; }
+}

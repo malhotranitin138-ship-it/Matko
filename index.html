@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You 🔒</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .container { max-width: 400px; }
+  </style>
+</head>
+<body>
+
+  <div class="hearts-container"></div>
+
+  <div class="container">
+    <div class="lock-ring">🔒</div>
+    <h1>This is for you</h1>
+    <p class="subtext">Enter the password to open 💕</p>
+    <div class="divider"></div>
+
+    <div class="input-wrap">
+      <input
+        type="password"
+        id="password"
+        placeholder="••••••••"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      >
+    </div>
+    <p class="hint">Hint: our Pengu 🐧</p>
+
+    <button class="btn-primary" id="unlockBtn">Unlock ❤️</button>
+    <p class="error-msg" id="errMsg"></p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function doCheck() {
+      var val = (document.getElementById("password").value || "").trim();
+      if (val === "Nishia") {
+        localStorage.setItem("playMusic", "true");
+        /* Clear any stored path choice from a previous session */
+        localStorage.removeItem("chosenPath");
+        window.location.href = "home.html";
+      } else {
+        var err = document.getElementById("errMsg");
+        var inp = document.getElementById("password");
+        err.textContent = "Wrong password 😢 Try again!";
+        inp.style.borderColor = "rgba(140,30,70,0.6)";
+        setTimeout(function () {
+          err.textContent = "";
+          inp.style.borderColor = "";
+        }, 2200);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var btn = document.getElementById("unlockBtn");
+      var inp = document.getElementById("password");
+      if (btn) btn.addEventListener("click", doCheck);
+      if (inp) inp.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") doCheck();
+      });
+    });
+  </script>
+</body>
+</html>
